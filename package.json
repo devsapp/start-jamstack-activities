@@ -1,0 +1,12 @@
+{
+    "name": "start-jamstack-activities",
+    "private": false,
+
+    "scripts": {
+      "publish": "s cli platform publish"
+    },
+    "dependencies": {
+    
+    }
+  }
+  
