@@ -1,5 +1,5 @@
 Type: Application
-Name: start-jamstack-activites
+Name: start-jamstack-activities
 Provider:
   - 阿里云 # 阿里云, 百度智能云, 华为云, 腾讯云, AWS, Azure, Google Cloud, 其它
 Version: 0.0.1
