@@ -1,0 +1,45 @@
+edition: 1.0.0
+name: qa-website
+vars:
+  domain: {{domain}}.resume.net.cn
+  qaSouceCode: qa
+  qa-apiSourceCode: qa-api
+services:
+  cloudnativeQA:
+    component: jamstack
+    # actions:
+    #   pre-deploy:
+    #     - run: npm i
+    #       path: ${vars.qaSouceCode}
+    props:
+      domain: ${vars.domain}
+      favicon: false
+      defaultApp: cloudnativeQA
+      apps:
+        - name: cloudnativeQA
+          type: jamstack
+          releaseCode: ${vars.qaSouceCode}
+          paths:
+            - /
+            - /~qa
+          indexFile: qa.html
+        - name: qa-api
+          type: backend
+          paths:
+            - /~user
+          proxyUrl: ${qa-api.output[0].customDomains[0].domainName}
+  qa-api:
+    component: jamstack-api@0.0.4
+    actions:
+      pre-deploy:
+        - run: npm i
+          path: ${vars.qa-apiSourceCode}
+    props:
+      sourceCode: ${vars.qa-apiSourceCode}
+      app:
+        environmentVariables:
+          tablestore_endpoint: {{tablestore_endpoint}}
+          tablestore_instanceName: {{tablestore_instanceName}}
+      route:
+        - /
+     
