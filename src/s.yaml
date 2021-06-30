@@ -1,7 +1,7 @@
 edition: 1.0.0
 name: qa-website
 vars:
-  domain: {{domain}}.resume.net.cn
+  domain: {{domain|最终生成：<你输入的域名>.resume.net.cn}}.resume.net.cn
   qaSouceCode: qa
   qa-apiSourceCode: qa-api
 services:
@@ -38,8 +38,8 @@ services:
       sourceCode: ${vars.qa-apiSourceCode}
       app:
         environmentVariables:
-          tablestore_endpoint: {{tablestore_endpoint}}
-          tablestore_instanceName: {{tablestore_instanceName}}
+          tablestore_endpoint: {{tablestore_endpoint|tablestore的公网节点，这部分数据我们会帮你存到环境变量，并加入到.gitignore保障不会被作为代码提交}}
+          tablestore_instanceName: {{tablestore_instanceName|tablestore的实例名，这部分数据我们会帮你存到环境变量，并加入到.gitignore保障不会被作为代码提交}}
       route:
         - /
      
